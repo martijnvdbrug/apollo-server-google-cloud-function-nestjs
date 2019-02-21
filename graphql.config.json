@@ -1,19 +1,9 @@
 {
   "schema": {
     "request": {
-      "url": "https://api-dot-mistergreen-direct-test.appspot.com/api/v3/graphql",
+      "url": "http://localhost:8080",
       "method" : "POST",
       "postIntrospectionQuery" : true
     }
-  },
-  "endpoints" : [
-    {
-      "name": "staging",
-      "url": "https://api-staging.mistergreendirect.com/api/v3/graphql"
-    },
-    {
-      "name": "production",
-      "url": "https://api.mistergreendirect.com/api/v3/graphql"
-    }
-  ]
+  }
 }

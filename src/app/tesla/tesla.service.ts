@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import {TeslaModel} from '../../generated/graphql-types';
+import {Tesla, TeslaModel} from '../../generated/graphql-types';
 
 @Injectable()
 export class TeslaService {
 
-  get(model: TeslaModel) {
-
+  getTesla(model: TeslaModel): Promise<Tesla> {
+    return undefined;
   }
 }

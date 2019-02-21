@@ -3,6 +3,7 @@ type Tesla {
     model: String
     edition: String
     kwh: Int
+    range: Int
     wheels: Wheel
 }
 
@@ -17,7 +18,7 @@ type Query {
     # Get a Tesla based on given model
     Tesla(model: TeslaModel!): Tesla
     # Get all available wheels for a given model
-    Wheels(mode: TeslaModel!): [Wheel]
+    availableWheels(model: TeslaModel!): [Wheel]
 }
 
 type Mutation {

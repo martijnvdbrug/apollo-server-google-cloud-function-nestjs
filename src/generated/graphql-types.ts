@@ -18,7 +18,7 @@ export interface Query {
   /** Get a Tesla based on given model */
   Tesla?: Maybe<Tesla>;
   /** Get all available wheels for a given model */
-  Wheels?: Maybe<(Maybe<Wheel>)[]>;
+  availableWheels?: Maybe<(Maybe<Wheel>)[]>;
 }
 
 export interface Tesla {
@@ -29,6 +29,8 @@ export interface Tesla {
   edition?: Maybe<string>;
 
   kwh?: Maybe<number>;
+
+  range?: Maybe<number>;
 
   wheels?: Maybe<Wheel>;
 }
@@ -55,8 +57,8 @@ export interface Mutation {
 export interface TeslaQueryArgs {
   model: TeslaModel;
 }
-export interface WheelsQueryArgs {
-  mode: TeslaModel;
+export interface AvailableWheelsQueryArgs {
+  model: TeslaModel;
 }
 export interface PimpMyWheelsMutationArgs {
   teslaId: string;
