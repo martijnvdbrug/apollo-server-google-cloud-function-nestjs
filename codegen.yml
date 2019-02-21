@@ -1,0 +1,6 @@
+schema: http://localhost:8080
+overwrite: true
+generates:
+  src/generated/graphql-types.ts:
+    - typescript-common
+    - typescript-server

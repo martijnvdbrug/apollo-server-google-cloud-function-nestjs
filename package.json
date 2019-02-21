@@ -1,0 +1,58 @@
+{
+  "name": "leasewise-service",
+  "description": "MisterGreen Direct LeaseWise service - Cloud function",
+  "version": "0.0.1",
+  "private": true,
+  "license": "UNLICENSED",
+  "author": "MisterGreen Direct",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node ./dist/dev-server",
+    "compile": "yarn compile:typescript && yarn compile:copy",
+    "compile:copy": "copyfiles --up 1 ./src/**/*.graphql ./dist/",
+    "compile:typescript:watch": "yarn tsc -w",
+    "serve": "func(){ concurrently --names \"tsc,graphql file copy,server\" --kill-others \"yarn compile:typescript:watch\" \"nodemon -w src -e graphql -x yarn compile:copy\" \"nodemon -x yarn start $1\";}; func",
+    "deploy": "yarn compile && gcloud beta functions deploy teslaService --runtime=nodejs8 --trigger-http --region=europe-west1 --timeout=540",
+    "generate-typings": "yarn gql-gen"
+  },
+  "dependencies": {
+    "@nestjs/common": "^5.7.2",
+    "@nestjs/core": "^5.7.2",
+    "apollo-server-cloud-functions": "^2.4.2",
+    "apollo-server-express": "^2.4.2",
+    "graphql": "^14.1.1",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.4.0",
+    "shortid": "^2.2.14"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^5.8.0",
+    "@types/filesystem": "^0.0.29",
+    "@types/graphql": "^14.0.5",
+    "@types/node": "^8.0.58",
+    "@types/node-fetch": "^2.1.2",
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
+    "copyfiles": "^2.1.0",
+    "graphql-code-generator": "^0.16.1",
+    "graphql-codegen-typescript-common": "^0.16.1",
+    "graphql-codegen-typescript-server": "^0.16.1",
+    "nodemon": "^1.18.3",
+    "typescript": "^3.0.1"
+  },
+  "nodemonConfig": {
+    "ext": "json,js,graphql",
+    "delay": "200",
+    "ignore": [
+      "src/tests/*",
+      "tests",
+      ".idea",
+      ".get",
+      "db.json",
+      "js.map"
+    ],
+    "watch": [
+      "dist/"
+    ]
+  }
+}

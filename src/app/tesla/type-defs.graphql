@@ -1,0 +1,31 @@
+type Tesla {
+    id: ID!
+    model: String
+    edition: String
+    kwh: Int
+    wheels: Wheel
+}
+
+type Wheel {
+    id: ID!
+    name: String
+    inch: Int
+    model: Tesla
+}
+
+type Query {
+    # Get a Tesla based on given model
+    Tesla(model: TeslaModel!): Tesla
+    # Get all available wheels for a given model
+    Wheels(mode: TeslaModel!): [Wheel]
+}
+
+type Mutation {
+    # Change wheels of given Tesla
+    pimpMyWheels(teslaId: ID!, wheelId: ID!): Tesla
+}
+
+enum TeslaModel {
+    Model_3
+    Model_Y
+}
