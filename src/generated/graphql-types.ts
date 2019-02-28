@@ -24,7 +24,7 @@ export interface Query {
 export interface Tesla {
   id: string;
 
-  model?: Maybe<string>;
+  model?: Maybe<TeslaModel>;
 
   edition?: Maybe<string>;
 

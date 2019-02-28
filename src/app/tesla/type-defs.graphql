@@ -1,6 +1,6 @@
 type Tesla {
     id: ID!
-    model: String
+    model: TeslaModel
     edition: String
     kwh: Int
     range: Int
@@ -17,8 +17,6 @@ type Wheel {
 type Query {
     # Get a Tesla based on given model
     Tesla(model: TeslaModel!): Tesla
-    # Get all available wheels for a given model
-    availableWheels(model: TeslaModel!): [Wheel]
 }
 
 type Mutation {

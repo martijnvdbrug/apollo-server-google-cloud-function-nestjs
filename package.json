@@ -12,8 +12,8 @@
     "compile:copy": "copyfiles --up 1 ./src/**/*.graphql ./dist/",
     "compile:typescript:watch": "yarn tsc -w",
     "serve": "func(){ concurrently --names \"tsc,graphql file copy,server\" --kill-others \"yarn compile:typescript:watch\" \"nodemon -w src -e graphql -x yarn compile:copy\" \"nodemon -x yarn start $1\";}; func",
-    "deploy": "yarn compile && gcloud beta functions deploy teslaService --runtime=nodejs8 --trigger-http --region=europe-west1 --timeout=540",
-    "generate-typings": "yarn gql-gen"
+    "deploy": "yarn compile && gcloud beta functions deploy teslaHandler --runtime=nodejs8 --trigger-http --region=europe-west1",
+    "generate-types": "yarn gql-gen"
   },
   "dependencies": {
     "@nestjs/common": "^5.7.2",
@@ -24,6 +24,9 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.4.0",
     "shortid": "^2.2.14"
+  },
+  "resolutions": {
+    "@apollographql/graphql-playground-html": "^1.6.6"
   },
   "devDependencies": {
     "@nestjs/cli": "^5.8.0",
