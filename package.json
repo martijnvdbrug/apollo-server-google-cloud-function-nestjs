@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node ./dist/dev-server",
     "compile": "yarn compile:typescript && yarn compile:copy",
-    "compile:copy": "copyfiles --up 1 ./src/**/*.graphql ./dist/",
+    "compile:copy": "yarn copyfiles --up 1 ./src/**/*.graphql ./dist/",
+    "compile:typescript": "yarn tsc",
     "compile:typescript:watch": "yarn tsc -w",
     "serve": "func(){ concurrently --names \"tsc,graphql file copy,server\" --kill-others \"yarn compile:typescript:watch\" \"nodemon -w src -e graphql -x yarn compile:copy\" \"nodemon -x yarn start $1\";}; func",
     "deploy": "yarn compile && gcloud beta functions deploy teslaHandler --runtime=nodejs8 --trigger-http --region=europe-west1",

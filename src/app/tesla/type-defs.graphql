@@ -1,6 +1,6 @@
 type Tesla {
     id: ID!
-    model: TeslaModel
+    model: String
     edition: String
     kwh: Int
     range: Int
@@ -16,15 +16,10 @@ type Wheel {
 
 type Query {
     # Get a Tesla based on given model
-    Tesla(model: TeslaModel!): Tesla
+    Tesla: Tesla
 }
 
 type Mutation {
     # Change wheels of given Tesla
     pimpMyWheels(teslaId: ID!, wheelId: ID!): Tesla
-}
-
-enum TeslaModel {
-    Model_3
-    Model_Y
 }
